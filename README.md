@@ -4,6 +4,12 @@
 
 This API endpoint updates a test with a new question and provides the next question based on the current state of the test. It adjusts the difficulty level of subsequent questions based on the user’s responses and ensures that no previously asked questions are repeated.
 
+## Mongo URI
+Please create mongo atlas cluster. Create .env file and add Mongo URI or I'm attaching mongo URI to the email 
+
+## Seed script
+Please execute seed script first to add 500 random maths questions
+
 ## Endpoint
 
 ### Update Test
