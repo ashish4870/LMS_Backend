@@ -8,7 +8,8 @@ import { sample } from 'lodash';
 
 const router = Router();
 
-router.post('/tests', authenticate, authorizeAdmin, async (req: Request, res: Response) => {
+router.post('/tests', authenticate, async (req: Request, res: Response) => {
+  console.log(req.body, 'this is')
   try {
     const { userId } = req.body;
     const test = await createTest(userId);
@@ -20,7 +21,7 @@ router.post('/tests', authenticate, authorizeAdmin, async (req: Request, res: Re
   }
 });
 
-router.get('/tests/:testId', async (req: Request, res: Response) => {
+router.get('/tests/:testId', authenticate, async (req: Request, res: Response) => {
   try {
     const test = await getTestById(req.params.testId);
     if (!test) return res.status(404).json({ message: 'Test not found' });
@@ -30,7 +31,8 @@ router.get('/tests/:testId', async (req: Request, res: Response) => {
   }
 });
 
-router.post('/tests/:testId/update', authenticate, authorizeAdmin, async (req: Request, res: Response) => {
+router.post('/tests/:testId/update', authenticate, async (req: Request, res: Response) => {
+  console.log('yes')
   const { testId } = req.params;
   const { questionId, answer, score, difficulty } = req.body;
   console.log('Received data:', { testId, questionId, answer, score, difficulty });

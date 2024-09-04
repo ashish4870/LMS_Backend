@@ -16,8 +16,9 @@ router.post('/questions', authenticate, authorizeAdmin, async (req, res) => {
 });
 
 
-router.get('/questions/random', authenticate, authorizeAdmin, async (req, res) => {
+router.get('/questions/random', authenticate, async (req, res) => {
   try {
+    console.log('reached here')
     const question = await Question.aggregate([{ $sample: { size: 1 } }]);
     if (question.length === 0) return res.status(404).send('No questions found');
     res.json(question[0]);
